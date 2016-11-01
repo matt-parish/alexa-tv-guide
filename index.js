@@ -15,10 +15,6 @@ exports.handler = function(event, context, callback){
 };
 
 
-
-
-
-
 function showAirtimeIntent(show) {
   let self = this;
   
@@ -36,7 +32,7 @@ function showAirtimeIntent(show) {
   // getShow -----------------------------------------------
   let promise = tvGuide.getShow(showToLookup)
   .catch(() => {
-    self.emit(':tell', `I couldn\'t find any shows by the name "${showToLookup}"`);
+    self.emit(':tell', `Sorry, I couldn't find any shows by the name "${showToLookup}"`);
     promise.cancel();
   })
 
@@ -44,14 +40,16 @@ function showAirtimeIntent(show) {
   .then((showsArray) => tvGuide.findShowInMyCountry(showsArray))
   // the above is required for making sure we keep "this" inside the method.
   .catch(() => {
-    self.emit(':tell', `I couldn\'t find any shows by the name "${showToLookup}" in your country`);
+    self.emit(':tell', `Sorry, I couldn't find any shows by the name "${showToLookup}" in your country`);
     promise.cancel();
   })
 
   // getNextEpisode ----------------------------------------
   .then(tvGuide.getNextEpisode)
-  .catch(() => {
-    self.emit(':tell', `I couldn\'t find any new episodes for "${showToLookup}"`);
+  .catch((error) => {
+    var networkName = error.show.show.network.name;
+
+    self.emit(':tell', `Sorry, there doesn't seem to be any new episodes for the ${networkName} show "${showToLookup}"`);
     promise.cancel();
   })
 
@@ -61,16 +59,16 @@ function showAirtimeIntent(show) {
     self.emit(':tell', speakString)
   })
   .catch((error) => {
+    console.log(error);
     self.emit(':tell', `Sorry, something went wrong looking up "${showToLookup}".  Please try again.`);
     promise.cancel();
   });
 }
 
-
-var fakeThis = {
-  emit: function(tellAsk, message) {
-    console.log(message);
-  }
-}
-
-showAirtimeIntent.call(fakeThis, 'strictly come dancing');
+//var fakeThis = {
+//  emit: function(tellAsk, message) {
+//    console.log(message);
+//  }
+//}
+//
+//showAirtimeIntent.call(fakeThis, 'masterchef');

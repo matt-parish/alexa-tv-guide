@@ -11,8 +11,8 @@ const CALENDAR_SPEECH_FORMAT = {
   sameDay : '[Today at] LT',
   nextDay : '[Tomorrow at] LT',
   lastWeek : '[last] dddd [at] LT',
-  nextWeek : 'dddd [at] LT',
-  sameElse : 'dddd MMMM Do [at] LT'
+  nextWeek : '[on] dddd [at] LT',
+  sameElse : '[on] dddd MMMM Do [at] LT'
 };
 
 
@@ -47,7 +47,7 @@ TvGuide.prototype.getNextEpisode = function(show) {
     
     return [show, rp(options)];
   } else {
-    return [show, Promise.reject(new Error('no new episode found'))];
+    throw {error: 'no new episode found', show: show};
   }
   
 }
@@ -83,7 +83,7 @@ TvGuide.prototype.parseShowAndEpisodeDataToSpeech = function(show, episodeData) 
     .calendar(null, CALENDAR_SPEECH_FORMAT);
   
   let speakString = `
-    The next episode of the ${networkName} show ${showName} airs on ${niceDate}
+    The next episode of the ${networkName} show ${showName} airs ${niceDate}
   `;
   
   return speakString;
