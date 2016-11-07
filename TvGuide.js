@@ -101,28 +101,46 @@ TvGuide.prototype.errorHanding = (error, showQuery) => {
 // Throwables
 // ---------------------------------------------------
 
-function NoShowsError() {
-  this.message = function(showQuery) {
-    return `Sorry, I couldn't find any shows by the name "${showQuery}"`;
-  };
+class NoShowsError extends Error {
+  constructor() {
+    super('NoShowsError');
+    this.name = 'NoShowsError';
+    this.message = function(showQuery) {
+      return `Sorry, I couldn't find any shows by the name "${showQuery}."`;
+    };
+  }
 }
-function NoShowMatchInCountryError() {
-  this.message = function(showQuery) {
-    return `Sorry, I couldn't find any shows by the name "${showQuery}" in your country`;
-  };
+
+class NoShowMatchInCountryError extends Error {
+  constructor() {
+    super('NoShowMatchInCountryError');
+    this.name = 'NoShowMatchInCountryError';
+    this.message = function(showQuery) {
+      return `Sorry, I couldn't find any shows by the name "${showQuery}" in your country.`;
+    };
+  }
 }
-function NoNextEpisodeError(networkName) { 
-  this.networkName = networkName; 
-  this.message = function(showQuery) {
-    return `Sorry, there doesn't seem to be any new episodes for the ${this.networkName} show "${showQuery}"`;
-  };
-}
-function GenericShowLookupError() {
-  this.message = function(showQuery) {
-    return `Sorry, something went wrong looking up "${showQuery}".  Please try again.`;
+
+class NoNextEpisodeError extends Error {
+  constructor(networkName) {
+    super('NoNextEpisodeError');
+    this.name = 'NoNextEpisodeError';
+    this.networkName = networkName;
+    this.message = function(showQuery) {
+      return `Sorry, there doesn't seem to be any new episodes for the ${this.networkName} show "${showQuery}."`;
+    }
   };
 }
 
+class GenericShowLookupError extends Error {
+  constructor() {
+    super('GenericShowLookupError');
+    this.name = 'GenericShowLookupError';
+    this.message = function(showQuery) {
+      return `Sorry, something went wrong looking up "${showQuery}".  Please try again."`;
+    };
+  }
+}
  
 
 module.exports = TvGuide;
