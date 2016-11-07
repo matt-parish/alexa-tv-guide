@@ -4,6 +4,8 @@ const Alexa = require('alexa-sdk');
 
 const TvGuide = require('./TvGuide');
 
+const romanize = require('./lib/romanize');
+
 var handlers = {
   'ShowAirtimeIntent': showAirtimeIntent
 }
@@ -40,6 +42,25 @@ function showAirtimeIntent(show) {
   tvGuide.getShow(showToLookup)
   .then((showsArray) => tvGuide.findShowInMyCountry(showsArray))
   // the above is required for making sure we keep "this" inside the method.
+  .catch((error) => {
+    // if we've got a number, try it with roman numerals (api can't handle it)
+    // for example Planet Earth II.
+
+    try {
+      if (showToLookup.match(/\d/g).length > 0) {
+        let newShowToLookup = showToLookup.replace(/\d/g, function(something) {
+          return romanize(something);
+        });
+
+        return tvGuide.getShow(newShowToLookup)
+        .then((showsArray) => tvGuide.findShowInMyCountry(showsArray));
+      } else {
+        throw error;
+      }
+    } catch (e) {
+      throw error;
+    }
+  })
   .then(tvGuide.getNextEpisode)
   .spread(tvGuide.parseShowAndEpisodeDataToSpeech)
   .catch((error) => tvGuide.errorHanding(error, showToLookup))
@@ -55,4 +76,4 @@ var fakeThis = {
   }
 }
 
-showAirtimeIntent.call(fakeThis, 'strictly come dancing');
+showAirtimeIntent.call(fakeThis, 'planet earth 2');
