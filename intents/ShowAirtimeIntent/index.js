@@ -24,12 +24,12 @@ function ShowAirtimeIntent(show) {
     // Otherwise we're in testing mode.
     language = 'GB';
     showToLookup = show; 
-    
+
   }
 
   let tvGuide = new TvGuide(language);
   
-  tvGuide.getShow(showToLookup)
+  tvGuide.getShows(showToLookup)
   .then((showsArray) => tvGuide.findShowInMyCountry(showsArray, showToLookup))
   // the above is required for making sure we keep "this" inside the method.
   .then(tvGuide.getNextEpisode)

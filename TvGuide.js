@@ -7,6 +7,7 @@ const romanize = require('./lib/romanize');
 
 const ENDPOINT = 'http://api.tvmaze.com'
 const SHOWS = '/search/shows'
+const SINGLESEARCH = '/singlesearch/shows'
 
 // Constructor
 function TvGuide(country) {
@@ -14,7 +15,7 @@ function TvGuide(country) {
 }
 
 // Methods
-TvGuide.prototype.getShow = function(showName) {
+TvGuide.prototype.getShows = function(showName) {
   return Promise.try(() => {
     
     let options = {
@@ -23,6 +24,23 @@ TvGuide.prototype.getShow = function(showName) {
       json: true
     }
     
+    return rp(options);
+  })
+  .catch((err) => {
+    throw new NoShowsError();
+  });
+}
+
+// Methods
+TvGuide.prototype.getShow = function(showName) {
+  return Promise.try(() => {
+
+    let options = {
+      method: 'GET',
+      url: encodeURI(ENDPOINT + SINGLESEARCH + '?q=' + showName),
+      json: true
+    }
+
     return rp(options);
   })
   .catch((err) => {
@@ -53,7 +71,7 @@ TvGuide.prototype.findShowInMyCountry = function(showsArray, showToLookup) {
           return romanize(something);
         });
 
-        return self.getShow(newShowToLookup)
+        return self.getShows(newShowToLookup)
         .then((showsArray) => self.findShowInMyCountry(showsArray, showToLookup));
       } else {
         throw new NoShowMatchInCountryError();;

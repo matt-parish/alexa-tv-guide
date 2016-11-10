@@ -20,4 +20,4 @@ var fakeThis = {
   }
 }
 
-intents.ShowAirtimeFullIntent.call(fakeThis, 'im a celebrity');
+intents.ShowCastIntent.call(fakeThis, 'big bang theory');
