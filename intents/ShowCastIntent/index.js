@@ -6,9 +6,6 @@ const TvGuide = require('../../TvGuide');
 const Omdb = require('../../Omdb');
 const constants = require('./../../lib/constants')
 
-// make an intenthandlers file, and thne a file for each intent.
-// and a file for the core calls to the api.
-// that'll clean this file up massively.
 function ShowCastIntent() {
   let showToLookup;
   let language;
@@ -35,6 +32,10 @@ function ShowCastIntent() {
       let imdbId = show.externals.imdb;
       let networkName = show.network.name;
       
+      if (imdbId === undefined || imdbId === null) {
+        throw new Omdb.throwables.NoImdbIdAvailableError();
+      }
+
       return Omdb.getShowFromImdbId(imdbId)
       .then((result) => {
         // Actors comes as a ', ' seperated string, we need to speechify it.
@@ -59,11 +60,20 @@ function ShowCastIntent() {
       });
     })
     .catch((err) => {
-      console.log(err);
-      throw new TvGuide.throwables.GenericShowLookupError();
+      throw new Omdb.throwables.NoCastAvailableError();
     })
   })
-  .catch((error) => tvGuide.errorHanding(error, showToLookup))
+  .catch((error) => {
+    if (Object.keys(TvGuide.throwables).indexOf(error.name) > -1) {
+      return TvGuide.errorHanding(error, showToLookup)
+    } else if (Object.keys(Omdb.throwables).indexOf(error.name) > -1) {
+      return Omdb.errorHanding(error, showToLookup)
+    } else {
+      // Log it to the console and error with a generic message.
+      console.log(error);
+      return TvGuide.errorHanding(new TvGuide.throwables.GenericShowLookupError(), showToLookup)
+    }
+  })
   .then((speakString) => {
     this.emit(':tell', speakString);
   });

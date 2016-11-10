@@ -29,4 +29,35 @@ Omdb.getShowFromImdbId = function(showImdbId) {
 }
 
 
+class NoImdbIdAvailableError extends Error {
+  constructor() {
+    super('NoImdbIdAvailableError');
+    this.name = 'NoImdbIdAvailableError';
+    this.message = function(showQuery) {
+      return `Sorry, I couldn't find any shows by the name "${showQuery}".`;
+    };
+  }
+}
+class NoCastAvailableError extends Error {
+  constructor() {
+    super('NoCastAvailableError');
+    this.name = 'NoCastAvailableError';
+    this.message = function(showQuery) {
+      return `Sorry, I couldn't find any cast for the show "${showQuery}".`;
+    };
+  }
+}
+
+Omdb.throwables = {
+  'NoImdbIdAvailableError': NoImdbIdAvailableError,
+  'NoCastAvailableError': NoCastAvailableError,
+}
+
+Omdb.errorHanding = (error, showQuery) => {
+  if (Object.keys(Omdb.throwables).indexOf(error.name) === -1) {
+    console.log(error);
+  }
+  return error.message(showQuery);
+}
+
 module.exports = Omdb;

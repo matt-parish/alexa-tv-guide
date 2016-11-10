@@ -152,7 +152,7 @@ TvGuide.throwables = {
 }
  
 
-TvGuide.prototype.errorHanding = (error, showQuery) => {
+TvGuide.errorHanding = (error, showQuery) => {
   if (Object.keys(TvGuide.throwables).indexOf(error.name) === -1) {
     console.log(error);
   }

@@ -6,9 +6,6 @@ const Promise = require('bluebird');
 const TvGuide = require('../../TvGuide');
 const constants = require('./../../lib/constants')
 
-// make an intenthandlers file, and thne a file for each intent.
-// and a file for the core calls to the api.
-// that'll clean this file up massively.
 function ShowAirtimeIntent() {
   let showToLookup;
   let language;
@@ -54,7 +51,7 @@ function ShowAirtimeIntent() {
     });
   })
 
-  .catch((error) => tvGuide.errorHanding(error, showToLookup))
+  .catch((error) => TvGuide.errorHanding(error, showToLookup))
   .then((speakString) => { 
     this.emit(':tell', speakString)
   })
