@@ -4,8 +4,6 @@ const Alexa = require('alexa-sdk');
 
 const intents = require('./intents');
 
-const romanize = require('./lib/romanize');
-
 var handlers = intents;
 
 exports.handler = function(event, context, callback){

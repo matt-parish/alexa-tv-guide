@@ -4,8 +4,11 @@ const rp = require('request-promise');
 const moment = require('moment');
 const Promise = require('bluebird');
 
+const romanize = require('./lib/romanize');
+
 const ENDPOINT = 'http://api.tvmaze.com'
 const SHOWS = '/search/shows'
+
 const CALENDAR_SPEECH_FORMAT = {
   lastDay : '[Yesterday at] LT',
   sameDay : '[Today at] LT',
@@ -38,7 +41,7 @@ TvGuide.prototype.getShow = function(showName) {
   });
 }
 
-TvGuide.prototype.findShowInMyCountry = function(showsArray) {
+TvGuide.prototype.findShowInMyCountry = function(showsArray, showToLookup) {
   let self = this;
   
   return new Promise.try(() => {
@@ -51,8 +54,26 @@ TvGuide.prototype.findShowInMyCountry = function(showsArray) {
     
     throw 'Only gets here if there arent any shows in your country';
   })
-  .catch((err) => {
-    throw new NoShowMatchInCountryError();
+  .catch((e) => {
+    // if we've got a number, try it with roman numerals (api can't handle it)
+    // for example Planet Earth II.
+
+    try {
+      if (showToLookup.match(/\d/g).length > 0) {
+        let newShowToLookup = showToLookup.replace(/\d/g, function(something) {
+          return romanize(something);
+        });
+
+        return self.getShow(newShowToLookup)
+        .then((showsArray) => self.findShowInMyCountry(showsArray, showToLookup));
+      } else {
+        throw new NoShowMatchInCountryError();;
+      }
+    } catch (error) {
+
+      console.log(error);
+      throw error;
+    }
   });
 }
 
