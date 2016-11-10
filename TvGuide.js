@@ -77,7 +77,6 @@ TvGuide.prototype.findShowInMyCountry = function(showsArray, showToLookup) {
         throw new NoShowMatchInCountryError();;
       }
     } catch (error) {
-
       console.log(error);
       throw error;
     }

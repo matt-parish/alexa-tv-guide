@@ -9,22 +9,20 @@ const constants = require('./../../lib/constants')
 // make an intenthandlers file, and thne a file for each intent.
 // and a file for the core calls to the api.
 // that'll clean this file up massively.
-function ShowCastIntent(show) {
+function ShowCastIntent() {
   let showToLookup;
   let language;
   
   try {
+    showToLookup= this.event.request.intent.slots.Show.value;
+
     // case where the call comes from Alexa.
     // locale is sent to us in the format cc-LC
     // (country code)-(LANGU?AGE CODE)
-    language = this.event.request.locale.split('-')[1]; 
-    showToLookup= this.event.request.intent.slots.Show.value;
-    
+    language = this.event.request.locale.split('-')[1];
   } catch (e) {
-    // Otherwise we're in testing mode.
+    // Otherwise default to GB
     language = 'GB';
-    showToLookup = show; 
-    
   }
 
   let tvGuide = new TvGuide(language);
