@@ -1,0 +1,82 @@
+ShowAirtimeIntent what time is {Show} on television
+ShowAirtimeIntent what time's {Show} on television
+ShowAirtimeIntent what time is {Show} on tv
+ShowAirtimeIntent what time's {Show} on tv
+ShowAirtimeIntent what time's {Show} on
+ShowAirtimeIntent what time is {Show} on
+ShowAirtimeIntent what time does {Show} start
+ShowAirtimeIntent what time's {Show} start
+ShowAirtimeIntent when does {Show} start
+ShowAirtimeIntent when does {Show} begin
+ShowAirtimeIntent when does {Show} air
+ShowAirtimeIntent when's {Show} start
+ShowAirtimeIntent when's {Show} begin
+ShowAirtimeIntent when's {Show} air
+ShowAirtimeIntent when is {Show} on television
+ShowAirtimeIntent when is {Show} on tv
+ShowAirtimeIntent when is {Show} on
+ShowAirtimeIntent when's {Show} on television
+ShowAirtimeIntent when's {Show} on tv
+ShowAirtimeIntent when's {Show} on
+
+ShowAirtimeFullIntent what time does {Show} finish
+ShowAirtimeFullIntent what time does {Show} end
+ShowAirtimeFullIntent what time's {Show} finish
+ShowAirtimeFullIntent what time's {Show} end
+ShowAirtimeFullIntent when does {Show} finish
+ShowAirtimeFullIntent when does {Show} end
+ShowAirtimeFullIntent how long is {Show}
+ShowAirtimeFullIntent how long is {Show} on for
+ShowAirtimeFullIntent how long is {Show} on
+ShowAirtimeFullIntent how long is {Show} on tv
+ShowAirtimeFullIntent how long is {Show} on television
+ShowAirtimeFullIntent how long's {Show}
+ShowAirtimeFullIntent how long's {Show} on for
+ShowAirtimeFullIntent how long's {Show} on
+ShowAirtimeFullIntent how long's {Show} on tv
+ShowAirtimeFullIntent how long's {Show} on television
+ShowAirtimeFullIntent what's the duration of {Show}
+ShowAirtimeFullIntent what's the run time of {Show}
+ShowAirtimeFullIntent what is the duration of {Show}
+ShowAirtimeFullIntent what is the run time of {Show}
+ShowAirtimeFullIntent what time does {Show} start and end
+ShowAirtimeFullIntent what time does {Show} start and end on tv
+ShowAirtimeFullIntent what time does {Show} start and end on television
+ShowAirtimeFullIntent what time does {Show} start and finish
+ShowAirtimeFullIntent what time does {Show} start and finish on tv
+ShowAirtimeFullIntent what time does {Show} start and finish on television
+ShowAirtimeFullIntent what time's {Show} start and end
+ShowAirtimeFullIntent what time's {Show} start and end on tv
+ShowAirtimeFullIntent what time's {Show} start and end on television
+ShowAirtimeFullIntent what time's {Show} start and finish
+ShowAirtimeFullIntent what time's {Show} start and finish on tv
+ShowAirtimeFullIntent what time's {Show} start and finish on television
+
+ShowCastIntent who is in {Show}
+ShowCastIntent who's in {Show}
+ShowCastIntent who are in {Show}
+ShowCastIntent who stars in {Show}
+ShowCastIntent who are the cast of {Show}
+ShowCastIntent who are the stars of {Show}
+ShowCastIntent who are the actors in {Show}
+ShowCastIntent who's that guy in {Show}
+ShowCastIntent who's that girl in {Show}
+ShowCastIntent who's that person in {Show}
+ShowCastIntent who's that man in {Show}
+ShowCastIntent who's that woman in {Show}
+ShowCastIntent who's that dude in {Show}
+ShowCastIntent who's that lady in {Show}
+ShowCastIntent who's that actor in {Show}
+ShowCastIntent who's the guy in {Show}
+ShowCastIntent who's the girl in {Show}
+ShowCastIntent who's the person in {Show}
+ShowCastIntent who's the man in {Show}
+ShowCastIntent who's the woman in {Show}
+ShowCastIntent who's the dude in {Show}
+ShowCastIntent who's the lady in {Show}
+ShowCastIntent who's the lead in {Show}
+ShowCastIntent who's the actor in {Show}
+ShowCastIntent who's the male lead in {Show}
+ShowCastIntent who's the female lead in {Show}
+ShowCastIntent what are {Show}'s cast members
+ShowCastIntent what are {Show}'s stars
