@@ -20,4 +20,4 @@ var fakeThis = {
   }
 }
 
-intents.ShowAirtimeIntent.call(fakeThis, 'planet earth 2');
+intents.ShowAirtimeFullIntent.call(fakeThis, 'im a celebrity');

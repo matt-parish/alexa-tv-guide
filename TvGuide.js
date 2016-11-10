@@ -1,23 +1,12 @@
 'use strict';
 
 const rp = require('request-promise');
-const moment = require('moment');
 const Promise = require('bluebird');
 
 const romanize = require('./lib/romanize');
 
 const ENDPOINT = 'http://api.tvmaze.com'
 const SHOWS = '/search/shows'
-
-const CALENDAR_SPEECH_FORMAT = {
-  lastDay : '[Yesterday at] LT',
-  sameDay : '[Today at] LT',
-  nextDay : '[Tomorrow at] LT',
-  lastWeek : '[last] dddd [at] LT',
-  nextWeek : '[on] dddd [at] LT',
-  sameElse : '[on] dddd MMMM Do [at] LT'
-};
-
 
 // Constructor
 function TvGuide(country) {
@@ -93,31 +82,6 @@ TvGuide.prototype.getNextEpisode = function(show) {
   
 }
 
-TvGuide.prototype.parseShowAndEpisodeDataToSpeech = function(show, episodeData) {
-  
-  return new Promise.try(() => {
-    let networkName = show.show.network.name;
-
-    let showName = show.show.name;
-
-    let niceDate = moment(episodeData.airstamp)
-      .calendar(null, CALENDAR_SPEECH_FORMAT);
-
-    let speakString = `
-      The next episode of the ${networkName} show ${showName} airs ${niceDate}
-    `;
-
-    return speakString;
-  })
-  .catch((err) => {
-    throw new GenericShowLookupError();
-  });
-}
-
-TvGuide.prototype.errorHanding = (error, showQuery) => {
-  return error.message(showQuery);
-}
-
 // ---------------------------------------------------
 // Throwables
 // ---------------------------------------------------
@@ -162,6 +126,20 @@ class GenericShowLookupError extends Error {
     };
   }
 }
+
+TvGuide.throwables = {
+  'NoShowsError': NoShowsError,
+  'NoShowMatchInCountryError': NoShowMatchInCountryError,
+  'NoNextEpisodeError': NoNextEpisodeError,
+  'GenericShowLookupError': GenericShowLookupError
+}
  
+
+TvGuide.prototype.errorHanding = (error, showQuery) => {
+  if (Object.keys(TvGuide.throwables).indexOf(error.name) === -1) {
+    console.log(error);
+  }
+  return error.message(showQuery);
+}
 
 module.exports = TvGuide;
