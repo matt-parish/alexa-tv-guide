@@ -94,7 +94,7 @@ TvGuide.prototype.getNextEpisode = function(show) {
     return [show, rp(options)];
   })
   .catch((err) => {
-    throw new NoNextEpisodeError(show.show.network.name);
+    throw new NoNextEpisodeError(show.show.network.name, show.show.name);
   });
   
 }
@@ -124,12 +124,13 @@ class NoShowMatchInCountryError extends Error {
 }
 
 class NoNextEpisodeError extends Error {
-  constructor(networkName) {
+  constructor(networkName, showName) {
     super('NoNextEpisodeError');
     this.name = 'NoNextEpisodeError';
     this.networkName = networkName;
-    this.message = function(showQuery) {
-      return `Sorry, there doesn't seem to be any new episodes for the ${this.networkName} show "${showQuery}."`;
+    this.showName = showName;
+    this.message = function() {
+      return `Sorry, there doesn't seem to be any new episodes for the ${this.networkName} show "${this.showName}."`;
     }
   };
 }

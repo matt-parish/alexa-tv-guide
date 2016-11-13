@@ -36,7 +36,7 @@ var fakeThis = {
     "locale": "en-GB",
     "timestamp": "2016-11-10T23:19:59Z",
     "intent": {
-      "name": "ShowCastIntent",
+      "name": "ShowAirtimeIntent",
       "slots": {
         "Show": {
           "name": "Show",
