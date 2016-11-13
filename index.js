@@ -8,6 +8,7 @@ var handlers = intents;
 
 exports.handler = function(event, context, callback){
   var alexa = Alexa.handler(event, context);
+  alexa.appId = 'amzn1.ask.skill.3905a048-00ff-4dbb-88df-8f39522bf15c';
   alexa.registerHandlers(handlers);
   alexa.execute();
 };
@@ -36,7 +37,7 @@ var fakeThis = {
     "locale": "en-GB",
     "timestamp": "2016-11-10T23:19:59Z",
     "intent": {
-      "name": "ShowAirtimeIntent",
+      "name": "ShowPreviousSummaryIntent",
       "slots": {
         "Show": {
           "name": "Show",

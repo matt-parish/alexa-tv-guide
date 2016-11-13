@@ -80,3 +80,24 @@ ShowCastIntent who's the male lead in {Show}
 ShowCastIntent who's the female lead in {Show}
 ShowCastIntent what are {Show}'s cast members
 ShowCastIntent what are {Show}'s stars
+
+ShowPreviousSummaryIntent what happened in {Show}
+ShowPreviousSummaryIntent what went on in {Show}
+ShowPreviousSummaryIntent what last happened in {Show}
+ShowPreviousSummaryIntent what happened in the last episode {Show}
+ShowPreviousSummaryIntent what happened in the most recent {Show}
+ShowPreviousSummaryIntent what's happening in {Show}
+ShowPreviousSummaryIntent what's going on in {Show}
+ShowPreviousSummaryIntent what's going on in the last episode {Show}
+ShowPreviousSummaryIntent what's going on in the most recent {Show}
+ShowPreviousSummaryIntent what's going on with {Show}
+ShowPreviousSummaryIntent what's up with {Show}
+ShowPreviousSummaryIntent what's occuring in {Show}
+ShowPreviousSummaryIntent what's occuring in the last episode of {Show}
+ShowPreviousSummaryIntent what's occuring in the most recent {Show}
+ShowPreviousSummaryIntent catch me up on {Show}
+ShowPreviousSummaryIntent catch me up with {Show}
+ShowPreviousSummaryIntent catch me up on the last episode of {Show}
+ShowPreviousSummaryIntent catch me up with the last episode of {Show}
+ShowPreviousSummaryIntent catch me up on the most recent {Show}
+ShowPreviousSummaryIntent catch me up with the most recent {Show}

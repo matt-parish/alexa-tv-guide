@@ -29,6 +29,8 @@ function ShowCastIntent() {
     
     return new Promise.try(() => {
       
+      console.log(show);
+
       let imdbId = show.externals.imdb;
       let networkName = show.network.name;
       
@@ -38,6 +40,8 @@ function ShowCastIntent() {
 
       return Omdb.getShowFromImdbId(imdbId)
       .then((result) => {
+        console.log(result);
+
         // Actors comes as a ', ' seperated string, we need to speechify it.
         let actorsArray = result.Actors.split(', ');
         
