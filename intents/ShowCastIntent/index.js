@@ -28,8 +28,6 @@ function ShowCastIntent() {
   .then((show) => {
     
     return new Promise.try(() => {
-      
-      console.log(show);
 
       let imdbId = show.externals.imdb;
       let networkName = show.network.name;
@@ -40,7 +38,6 @@ function ShowCastIntent() {
 
       return Omdb.getShowFromImdbId(imdbId)
       .then((result) => {
-        console.log(result);
 
         // Actors comes as a ', ' seperated string, we need to speechify it.
         let actorsArray = result.Actors.split(', ');
@@ -58,7 +55,9 @@ function ShowCastIntent() {
         for (let i = 1; i < maxNumberOfActorsToList - 1; i++) {
           actorsSpeech += ', ' + actorsArray[i];
         }
-        actorsSpeech += ' and ' + actorsArray[maxNumberOfActorsToList - 1];
+        if (maxNumberOfActorsToList > 1) {
+          actorsSpeech += ' and ' + actorsArray[maxNumberOfActorsToList - 1];
+        }
         
         return `The ${networkName} show ${show.name} stars ${actorsSpeech}.`;
       });
