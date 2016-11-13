@@ -82,6 +82,7 @@ ShowCastIntent what are {Show}'s cast members
 ShowCastIntent what are {Show}'s stars
 
 ShowPreviousSummaryIntent what happened in {Show}
+ShowPreviousSummaryIntent what happened last in {Show}
 ShowPreviousSummaryIntent what went on in {Show}
 ShowPreviousSummaryIntent what last happened in {Show}
 ShowPreviousSummaryIntent what happened in the last episode {Show}
