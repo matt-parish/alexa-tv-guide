@@ -3,8 +3,8 @@
 const moment = require('moment');
 const Promise = require('bluebird');
 
-const TvGuide = require('../../TvGuide');
-const constants = require('./../../lib/constants')
+const TvGuide = require('../../lib/TvGuide');
+const constants = require('./../../lib/helpers/constants');
 
 function ShowAirtimeIntent() {
   let showToLookup;
@@ -12,7 +12,7 @@ function ShowAirtimeIntent() {
   
 
   try {
-    showToLookup= this.event.request.intent.slots.Show.value;
+    showToLookup = this.event.request.intent.slots.Show.value;
 
     // case where the call comes from Alexa.
     // locale is sent to us in the format cc-LC
@@ -53,8 +53,8 @@ function ShowAirtimeIntent() {
 
   .catch((error) => TvGuide.errorHanding(error, showToLookup))
   .then((speakString) => { 
-    this.emit(':tell', speakString)
-  })
+    this.emit(':tell', speakString);
+  });
   
 }
 

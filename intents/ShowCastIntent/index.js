@@ -2,9 +2,9 @@
 
 const Promise = require('bluebird');
 
-const TvGuide = require('../../TvGuide');
-const Omdb = require('../../Omdb');
-const constants = require('./../../lib/constants')
+const TvGuide = require('../../lib/TvGuide');
+const Omdb = require('../../lib/Omdb');
+const constants = require('./../../lib/helpers/constants');
 
 function ShowCastIntent() {
   let showToLookup;
@@ -59,19 +59,19 @@ function ShowCastIntent() {
         return `The ${networkName} show ${show.name} stars ${actorsSpeech}.`;
       });
     })
-    .catch((err) => {
+    .catch(() => {
       throw new Omdb.throwables.NoCastAvailableError();
-    })
+    });
   })
   .catch((error) => {
     if (Object.keys(TvGuide.throwables).indexOf(error.name) > -1) {
-      return TvGuide.errorHanding(error, showToLookup)
+      return TvGuide.errorHanding(error, showToLookup);
     } else if (Object.keys(Omdb.throwables).indexOf(error.name) > -1) {
-      return Omdb.errorHanding(error, showToLookup)
+      return Omdb.errorHanding(error, showToLookup);
     } else {
       // Log it to the console and error with a generic message.
       console.log(error);
-      return TvGuide.errorHanding(new TvGuide.throwables.GenericShowLookupError(), showToLookup)
+      return TvGuide.errorHanding(new TvGuide.throwables.GenericShowLookupError(), showToLookup);
     }
   })
   .then((speakString) => {

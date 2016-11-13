@@ -3,8 +3,8 @@
 const moment = require('moment');
 const Promise = require('bluebird');
 
-const TvGuide = require('../../TvGuide');
-const constants = require('./../../lib/constants')
+const TvGuide = require('../../lib/TvGuide');
+const constants = require('./../../lib/helpers/constants');
 
 function ShowruntimeFullIntent() {
   let showToLookup;
@@ -76,8 +76,8 @@ function ShowruntimeFullIntent() {
 
   .catch((error) => TvGuide.errorHanding(error, showToLookup))
   .then((speakString) => {
-    this.emit(':tell', speakString)
-  })
+    this.emit(':tell', speakString);
+  });
 }
 
 module.exports = ShowruntimeFullIntent;

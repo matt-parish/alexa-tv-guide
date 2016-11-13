@@ -47,6 +47,6 @@ var fakeThis = {
   },
   "version": "1.0"
 }
-}
+};
 
 intents[fakeThis.event.request.intent.name].call(fakeThis);

@@ -8,4 +8,4 @@ module.exports = {
   'ShowAirtimeIntent': ShowAirtimeIntent,
   'ShowAirtimeFullIntent': ShowAirtimeFullIntent,
   'ShowCastIntent': ShowCastIntent
-}
+};
