@@ -37,11 +37,11 @@ var fakeThis = {
     "locale": "en-GB",
     "timestamp": "2016-11-10T23:19:59Z",
     "intent": {
-      "name": "ShowPreviousSummaryIntent",
+      "name": "ShowChannelIntent",
       "slots": {
         "Show": {
           "name": "Show",
-          "value": "british bake off"
+          "value": "im a celebrity get me out of here"
         }
       }
     }

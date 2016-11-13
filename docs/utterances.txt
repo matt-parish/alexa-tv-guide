@@ -52,6 +52,27 @@ ShowAirtimeFullIntent what time's {Show} start and finish
 ShowAirtimeFullIntent what time's {Show} start and finish on tv
 ShowAirtimeFullIntent what time's {Show} start and finish on television
 
+ShowChannelIntent what channel is {Show} on
+ShowChannelIntent what channel is {Show} on tonight
+ShowChannelIntent what channel is {Show} on today
+ShowChannelIntent what channel is {Show} on tomorrow
+ShowChannelIntent what channel's {Show} on
+ShowChannelIntent what channel's {Show} on tonight
+ShowChannelIntent what channel's {Show} on today
+ShowChannelIntent what channel's {Show} on tomorrow
+ShowChannelIntent what channel is {Show} airing on
+ShowChannelIntent what channel is {Show} airing on tonight
+ShowChannelIntent what channel is {Show} airing on today
+ShowChannelIntent what channel is {Show} airing on tomorrow
+ShowChannelIntent what channel's {Show} airing on
+ShowChannelIntent what channel's {Show} airing on tonight
+ShowChannelIntent what channel's {Show} airing on today
+ShowChannelIntent what channel's {Show} airing on tomorrow
+ShowChannelIntent what channel's showing {Show}
+ShowChannelIntent what channel's showing {Show} tonight
+ShowChannelIntent what channel's showing {Show} today
+ShowChannelIntent what channel's showing {Show} tomorrow
+
 ShowCastIntent who is in {Show}
 ShowCastIntent who's in {Show}
 ShowCastIntent who are in {Show}
@@ -78,8 +99,8 @@ ShowCastIntent who's the lead in {Show}
 ShowCastIntent who's the actor in {Show}
 ShowCastIntent who's the male lead in {Show}
 ShowCastIntent who's the female lead in {Show}
-ShowCastIntent what are {Show}'s cast members
-ShowCastIntent what are {Show}'s stars
+ShowCastIntent what are {Show} cast members
+ShowCastIntent what are {Show} stars
 
 ShowPreviousSummaryIntent what happened in {Show}
 ShowPreviousSummaryIntent what happened last in {Show}

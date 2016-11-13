@@ -1,11 +1,14 @@
 'use strict'; 
 
-const TvGuide = require('../../lib/TvGuide');
+const moment = require('moment');
+const Promise = require('bluebird');
 
-function ShowPreviousSummaryIntent() {
+const TvGuide = require('../../lib/TvGuide');
+const constants = require('./../../lib/helpers/constants');
+
+function ShowChannelIntent() {
   let showToLookup;
   let language;
-
 
   try {
     showToLookup = this.event.request.intent.slots.Show.value;
@@ -21,16 +24,13 @@ function ShowPreviousSummaryIntent() {
 
   let tvGuide = new TvGuide(language);
 
-  tvGuide.getShow(showToLookup)
-  .then(tvGuide.getPreviousEpisode)
-  .spread((show, previousEpisode) => {
+  tvGuide.getShows(showToLookup)
+  .then((showsArray) => tvGuide.findShowInMyCountry(showsArray, showToLookup))
+  .then((show) => {
+    let showName = show.show.name;
+    let networkName = show.show.network.name;
     
-    let arrayOfSummaryParagraphs = tvGuide.formatEpisodeSummaryIntoArray(previousEpisode.summary);
-    
-    let speakString = `In the last episode of the ${show.network.name} show ${show.name}: ${arrayOfSummaryParagraphs[0]}`;
-    
-    return speakString;
-    
+    return `${showName} airs on ${networkName}.`;
   })
   .catch((error) => TvGuide.errorHanding(error, showToLookup))
   .then((speakString) => {
@@ -38,4 +38,4 @@ function ShowPreviousSummaryIntent() {
   });
 }
 
-module.exports = ShowPreviousSummaryIntent;
+module.exports = ShowChannelIntent;
