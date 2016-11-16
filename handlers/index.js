@@ -6,7 +6,7 @@ const ShowCastIntent = require('./ShowCastIntent');
 const ShowChannelIntent = require('./ShowChannelIntent');
 const ShowPreviousSummaryIntent = require('./ShowPreviousSummaryIntent');
 
-let intents = {
+let handlers = {
   'ShowAirtimeIntent': ShowAirtimeIntent,
   'ShowAirtimeFullIntent': ShowAirtimeFullIntent,
   'ShowCastIntent': ShowCastIntent,
@@ -14,7 +14,7 @@ let intents = {
   'ShowPreviousSummaryIntent': ShowPreviousSummaryIntent
 };
 
-intents['AMAZON.HelpIntent'] = function() {
+handlers['AMAZON.HelpIntent'] = function() {
   this.emit(':tell',
     `Here are a few things you can ask:
     What time is "Humans" on?,
@@ -23,4 +23,10 @@ intents['AMAZON.HelpIntent'] = function() {
     What happened in "Humans"`);
 };
 
-module.exports = intents;
+handlers['LaunchRequest'] = function() {
+  this.emit(':ask', 
+    `Welcome to t.v. guide.  You can ask me questions
+     such as: "What time is 'I'm a celebrity, get me out of here" on`);
+};
+
+module.exports = handlers;

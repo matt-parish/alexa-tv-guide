@@ -2,9 +2,7 @@
 
 const Alexa = require('alexa-sdk');
 
-const intents = require('./intents');
-
-var handlers = intents;
+const handlers = require('./handlers');
 
 exports.handler = function(event, context, callback){
   var alexa = Alexa.handler(event, context);

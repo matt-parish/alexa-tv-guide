@@ -18,6 +18,12 @@ ShowAirtimeIntent when is {Show} on
 ShowAirtimeIntent when's {Show} on television
 ShowAirtimeIntent when's {Show} on tv
 ShowAirtimeIntent when's {Show} on
+ShowAirtimeIntent what time {Show} is on
+ShowAirtimeIntent what time {Show} is on television
+ShowAirtimeIntent what time {Show} is on tv
+ShowAirtimeIntent what time {Show} starts
+ShowAirtimeIntent what time {Show} begins
+ShowAirtimeIntent what time {Show} airs
 
 ShowAirtimeFullIntent what time does {Show} finish
 ShowAirtimeFullIntent what time does {Show} end
@@ -51,6 +57,13 @@ ShowAirtimeFullIntent what time's {Show} start and end on television
 ShowAirtimeFullIntent what time's {Show} start and finish
 ShowAirtimeFullIntent what time's {Show} start and finish on tv
 ShowAirtimeFullIntent what time's {Show} start and finish on television
+ShowAirtimeFullIntent what time {Show} starts and finishes on television
+ShowAirtimeFullIntent what time {Show} starts and finishes on tv
+ShowAirtimeFullIntent what time {Show} starts and finishes
+ShowAirtimeFullIntent what time {Show} finishes
+ShowAirtimeFullIntent what time {Show} runs for
+ShowAirtimeFullIntent what time {Show} ends
+
 
 ShowChannelIntent what channel is {Show} on
 ShowChannelIntent what channel is {Show} on tonight
